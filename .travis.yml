@@ -1,9 +1,5 @@
 # Tutorial here: https://medium.com/@harmittaa/travis-ci-android-example-357f6e632fc4
 
-env:
-  global:
-  - secure: < a long string >
-  - secure: < a long string >
 
 
 language: android
@@ -49,7 +45,6 @@ before_install:
 
 
 
- 
 
 
 before_script:
@@ -63,24 +58,10 @@ script:
 - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
 
 
-before_deploy:
-- meteor build $HOME --server server-url
-- cp $TRAVIS_BUILD_DIR/.keystore $HOME
-# replace with your-apk-name leave release-unsigned.apk as it is
-- jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 $HOME/android/release-unsigned.apk your-apk-name -keystore $HOME/.keystore -storepass $storepass -keypass $keypass
-# replace with your-apk-name leave release-unsigned.apk as it is
-- "${ANDROID_HOME}/build-tools/22.0.1/zipalign 4 $HOME/android/release-unsigned.apk $HOME/android/your-apk-name.apk"
 
 
 
-deploy:
-  provider: releases
-  api_key: "2e9372545d343a71d12670506d5d230b1b4aade2"
-  # replace your-apk-name
-  file: "$HOME/android/BasicCalculator.apk"
-  skip_cleanup: true
-  on:
-tags: true
+
 
 
 
