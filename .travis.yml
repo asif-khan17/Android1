@@ -19,27 +19,24 @@ android:
   - addon-google_apis-google-19
   - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
   - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
-  
-  
-  
 before_install:
 - mkdir "$ANDROID_HOME/licenses" || true
 - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
 - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
 - chmod +x gradlew
 - "./gradlew dependencies || true"
-
 before_script:
-
 - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
 - emulator -avd test -no-skin -no-audio -no-window &
 - android-wait-for-emulator
 - adb shell input keyevent 82 &
-
 script:
 - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
-
-
-
-    
-    
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: JHNtPeuX7yqc61XN93+j3QaHVsmQRYJHrwfXqwYd1LKFSMzuwNKDW0sky+YEIw6fWl0WfP3733TZK+37I00gOgnULtxpo6Er+eg5GFPoOC60DmTJJWznJXfaPU69PKtNmiCENSM2yM8YPfSA90XUmKPNHBil0YPPDiRdArPlFYy/BhXwhWgejGuTYHg6uLNmFa04KWBWRrDlII3t9fGm4oo8YZn2lxg9SpoR+bjPb9J3/9YVbVqCKdiR3ZqPCjNLCnogl2BpzsJLQdilIXYdco3h34i8Br/AeyRSuaUNWFMvZntRS1UVPDDuhDU6E9ZpbxBsAN4aOLOfTMLTy2o1D9HmNTqewL6rFzF21HVjPqjtnISeTCnGm0jtG9jfxzQ0ImAaRPYxWRF/0WS5q492rWyX7KbUh2iqY5lie8Ugc1ggYecIDY51Qa6v13k0f4NuOV0LKipGp+zuGBoA9Et6iIoWSTcQb5yqb23R60uUK9IxGXut/DkMJUWeHZq/DNUDf0fiwwPNsjKVyXYMjWb4ShKsIxjJYI7eLDxl1MFITYt9d33lPhwViBIJ4kRPVP7/Mb7r3LvrIlvBbF3/IiDqLa5ur2VI5xhT3FNHJHzphSqR8lr1mp8DAMwUU9EfhwBGCmB3OO/Co3a8SNk1roTMej91hM2/YzLvODEUb+EKp9k=
+  file: basicCalculator/build/outputs/apk/basicCalculator*releases*.apk
+  on:
+    repo: asif-khan17/Android1
