@@ -1,68 +1,49 @@
-# Tutorial here: https://medium.com/@harmittaa/travis-ci-android-example-357f6e632fc4
-
-
-
 language: android
 sudo: required
 jdk: oraclejdk8
-
-
-
 env:
- global:
- - ANDROID_API=24
- - EMULATOR_API=21
- - ANDROID_BUILD_TOOLS=24.0.2
- - ADB_INSTALL_TIMEOUT=5 # minutes
- 
-
- 
+  global:
+  - ANDROID_API=24
+  - EMULATOR_API=21
+  - ANDROID_BUILD_TOOLS=24.0.2
+  - ADB_INSTALL_TIMEOUT=5
 android:
- components:
- - tools
- - platform-tools
- - build-tools-$ANDROID_BUILD_TOOLS
- - android-$ANDROID_API
- - android-$EMULATOR_API_LEVEL
- - extra-google-m2repository
- - extra-android-m2repository # for design library
- - addon-google_apis-google-19 # google play services
- - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
- - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
-
-
- 
-
+  components:
+  - tools
+  - platform-tools
+  - build-tools-$ANDROID_BUILD_TOOLS
+  - android-$ANDROID_API
+  - android-$EMULATOR_API_LEVEL
+  - extra-google-m2repository
+  - extra-android-m2repository
+  - addon-google_apis-google-19
+  - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
+  - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
 before_install:
-
 - mkdir "$ANDROID_HOME/licenses" || true
 - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
 - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
-
 - chmod +x gradlew
-- ./gradlew dependencies || true # DON'T ADD unless you are getting "Install missing components using SDK manager"
-#Source: https://medium.com/@oldergod/constraint-layout-and-circleci-travis-d50342696d2
-
-
-
-
-
+- "./gradlew dependencies || true"
 before_script:
 - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
 - emulator -avd test -no-skin -no-audio -no-window &
 - android-wait-for-emulator
 - adb shell input keyevent 82 &
 - travis encrypt-file .keystore --add
-
 script:
 - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
-
-
-
-
-
-
-
-
-
- 
+deploy:
+  provider: releases
+  
+  api_key:
+    secure: n4au/hQcIa1KUUkD727j23Xc/Wjqu19hOzo+JkcfSlAQaS10oT+f3fKvJpp2IkkxOqEYBY9SRBbFTZ0PC+cbwIM7k8UUUF4jRcgR1AiSknh+seS+3C3xhO4gD5bNDSE1yhl8pw0QtC7HncJSeQU6KU1Dtb8zelRptkncHPFTYPfwjEmAVUIbaorhC2GWC6Xhm6zCsW2Fl+LTyhKd/NIqjdClnSS3eUZsFFi3JygM3+f2DlT+mGySWfwOv+PSNMfRWeDJwbWsFxhw+ZaLlWq1EsidLqxk4hhgSkM4cT4dmqNB7+SrgWNKNm7TNckACdQ+eYLVWSRNRtQYAvwIHcX8JVc7PFAP+saKb17IV+r30qfxzyKwF72vwi3imdfX2evoVl4Krcvggr0tQFsgHLbzoEa7NjwedZucgqQ5/jE086pUTw2xAZrrjrDtw/5oHHuraEG099pYkgbmvtpwUHYhjwBjGgdXrag/G86YAUGYRagKUHM8FYCQHLrM633/RI/+ctxgLVBf37LB70GVFbmOJqor9W3sgiLMoyHHMLCKKY3ot2N4yC05WNCRvd9wNeHjiAetE28ZMF4EWIvdqXmbkfHyjZas0zbpHGLI6m5g8jOOVcgrSnBIIfHG609knuouYSjESDIshQulPU8fPXw8U24AEC/CbLXz9EfZyBvfKVY=
+  file: BasicCalculator/build/outputs/apk/BasicCalculator*release*.apk
+   file_glob: "true"
+  skip_cleanup: "true"
+  on:
+  branch:master
+    repo: asif-khan17/Android1
+    
+    after_success:
+    - sh set_tags.sh
