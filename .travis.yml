@@ -75,6 +75,11 @@ deploy:
     repo: asif-khan17/Android1
     tags: true
     jdk: oraclejdk8
+    api_key:
+    travis encrypt "2e9372545d343a71d12670506d5d230b1b4aade2"
+    secure: "2e9372545d343a71d12670506d5d230b1b4aade2"
+    
+    
 
 
 
