@@ -42,28 +42,14 @@ before_install:
 - mkdir "$ANDROID_HOME/licenses" || true
 - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
 - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
-- openssl aes-256-cbc -K $encrypted_058af3642dc1_key -iv $encrypted_058af3642dc1_iv
-  -in .keystore.enc -out .keystore -d
-- npm install -g spacejam
-- npm install -g cordova
-- curl https://install.meteor.com/ | sh
+
 - chmod +x gradlew
 - ./gradlew dependencies || true # DON'T ADD unless you are getting "Install missing components using SDK manager"
 #Source: https://medium.com/@oldergod/constraint-layout-and-circleci-travis-d50342696d2
-services:
-- mongodb
-script: spacejam test --driver-package practicalmeteor:mocha
 
 
 
-
-
-
-
-before_install:
-- openssl aes-256-cbc -K $encrypted_058af3642dc1_key -iv $encrypted_058af3642dc1_iv
-  -in .keystore.enc -out .keystore -d
-#keytool: -genkey -alias your-app-name -keyalg RSA -keysize 2048 -validity 10000 
+ 
 
 
 before_script:
