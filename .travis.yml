@@ -61,7 +61,7 @@ script:
 before_deploy:
 - cp $TRAVIS_BUILD_DIR/Asif_key_store.jks.jks $HOME
 - cd app/build/outputs/apk/
-- jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $HOME/Asif_key_store.jks.jks -storepass "Mrperfect" -keypass "Mrperfect" app-release-unsigned.apk ExampleKeystoreAlias
+- jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $HOME/Asif_key_store.jks -storepass "Mrperfect" -keypass "Mrperfect" app-release-unsigned.apk ExampleKeystoreAlias
 
 # Verification
 - jarsigner -verify app-release-unsigned.apk
