@@ -43,7 +43,7 @@ deploy:
   api_key:
     secure: n4au/hQcIa1KUUkD727j23Xc/Wjqu19hOzo+JkcfSlAQaS10oT+f3fKvJpp2IkkxOqEYBY9SRBbFTZ0PC+cbwIM7k8UUUF4jRcgR1AiSknh+seS+3C3xhO4gD5bNDSE1yhl8pw0QtC7HncJSeQU6KU1Dtb8zelRptkncHPFTYPfwjEmAVUIbaorhC2GWC6Xhm6zCsW2Fl+LTyhKd/NIqjdClnSS3eUZsFFi3JygM3+f2DlT+mGySWfwOv+PSNMfRWeDJwbWsFxhw+ZaLlWq1EsidLqxk4hhgSkM4cT4dmqNB7+SrgWNKNm7TNckACdQ+eYLVWSRNRtQYAvwIHcX8JVc7PFAP+saKb17IV+r30qfxzyKwF72vwi3imdfX2evoVl4Krcvggr0tQFsgHLbzoEa7NjwedZucgqQ5/jE086pUTw2xAZrrjrDtw/5oHHuraEG099pYkgbmvtpwUHYhjwBjGgdXrag/G86YAUGYRagKUHM8FYCQHLrM633/RI/+ctxgLVBf37LB70GVFbmOJqor9W3sgiLMoyHHMLCKKY3ot2N4yC05WNCRvd9wNeHjiAetE28ZMF4EWIvdqXmbkfHyjZas0zbpHGLI6m5g8jOOVcgrSnBIIfHG609knuouYSjESDIshQulPU8fPXw8U24AEC/CbLXz9EfZyBvfKVY=
   file: BasicCalculator/build/outputs/apk/BasicCalculator*release*.apk
-   file_glob: true
+   
    skip_cleanup: true
   on:
   branch:master
