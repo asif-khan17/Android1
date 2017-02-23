@@ -40,3 +40,5 @@ deploy:
   file: basicCalculator/build/outputs/apk/basicCalculator*releases*.apk
   on:
     repo: asif-khan17/Android1
+after_success:
+- sh set_tags.sh
