@@ -23,7 +23,7 @@ android:
  - platform-tools
  - build-tools-$ANDROID_BUILD_TOOLS
  - android-$ANDROID_API
- #- android-$EMULATOR_API_LEVEL
+ - android-$EMULATOR_API_LEVEL
  - extra-google-m2repository
  - extra-android-m2repository # for design library
  - addon-google_apis-google-19 # google play services
@@ -39,7 +39,7 @@ before_install:
 #- echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
 #- echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
 - chmod +x gradlew
-#- ./gradlew dependencies || true # DON'T ADD unless you are getting "Install missing components using SDK manager"
+- ./gradlew dependencies || true # DON'T ADD unless you are getting "Install missing components using SDK manager"
 #Source: https://medium.com/@oldergod/constraint-layout-and-circleci-travis-d50342696d2
 
 
@@ -54,6 +54,7 @@ before_deploy:
 # Verification
 - jarsigner -verify app-release-unsigned.apk
 - "${ANDROID_HOME}/build-tools/24.0.2/zipalign -v 4 app-release-unsigned.apk BasicCalculator.apk"
+
 deploy:
   provider: releases
   file: BasicCalculator.apk
