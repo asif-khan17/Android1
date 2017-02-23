@@ -52,7 +52,6 @@ deploy:
   file_glob: true
   
   on:
-  branch: master
-  repo: asif-khan17/Android1
+    repo: asif-khan17/Android1
     
-    #after_success:-sh set_tags.sh
+    
