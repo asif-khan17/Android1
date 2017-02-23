@@ -19,6 +19,9 @@ android:
   - addon-google_apis-google-19
   - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
   - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
+  
+  
+  
 before_install:
 - mkdir "$ANDROID_HOME/licenses" || true
 - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
@@ -52,4 +55,4 @@ deploy:
   branch: master
   repo: asif-khan17/Android1
     
-    after_success:-sh set_tags.sh
+    #after_success:-sh set_tags.sh
