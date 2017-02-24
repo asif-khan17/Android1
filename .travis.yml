@@ -22,11 +22,7 @@ before_install:
 - chmod +x gradlew
 - "./gradlew dependencies || true"
 
-android {
-    lintOptions {
-        abortOnError false
-    }
-}
+
 
 script:
 - "./gradlew clean build connectedAndroidTest -PdisablePreDex --stacktrace"
@@ -57,4 +53,8 @@ deploy:
   on:
     branch: "master"
     repo: asif-khan17/Android1
+    
+    
+    after_success:
+    - sh set_tags.sh
     
