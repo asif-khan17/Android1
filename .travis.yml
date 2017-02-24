@@ -22,6 +22,12 @@ before_install:
 - chmod +x gradlew
 - "./gradlew dependencies || true"
 
+android {
+    lintOptions {
+        abortOnError false
+    }
+}
+
 script:
 - "./gradlew clean build connectedAndroidTest -PdisablePreDex --stacktrace"
 
