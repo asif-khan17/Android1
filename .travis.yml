@@ -10,9 +10,9 @@ android:
   - platform-tools
   - build-tools-$ANDROID_BUILD_TOOLS
   - android-$ANDROID_API
-  - android-$EMULATOR_API_LEVEL
-  - extra-google-m2repository
-  - extra-android-m2repository
+ # - android-$EMULATOR_API_LEVEL
+ # - extra-google-m2repository
+ # - extra-android-m2repository
   - addon-google_apis-google-19
   
   
@@ -25,6 +25,8 @@ before_install:
 - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
 - chmod +x gradlew
 - "./gradlew dependencies || true"
+
+
 
 
 

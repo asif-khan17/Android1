@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int val1=0,val2,sum=0;
     private boolean add,minus,equal,mul;
 
+	@SuppressLint("all")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
