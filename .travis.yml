@@ -60,6 +60,7 @@ deploy:
   file: ./app/build/outputs/apk/app-release-unsigned.apk
   skip_cleanup: true
   file_glob: true
+  
   on:
     branch: "master"
     repo: asif-khan17/Android1
