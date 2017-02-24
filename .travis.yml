@@ -71,6 +71,6 @@ deploy:
     branch: "master"
     repo: asif-khan17/Android1
     
-    
-    after_success:- sh set_tags.sh
+after_success: 
+- sh set_tags.sh
     
