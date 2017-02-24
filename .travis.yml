@@ -41,8 +41,6 @@ before_script:
 
 
 
-
-
 script:
 - "./gradlew clean build connectedAndroidTest -PdisablePreDex --stacktrace"
 
@@ -74,6 +72,5 @@ deploy:
     repo: asif-khan17/Android1
     
     
-    after_success:
-    - sh set_tags.sh
+    after_success:- sh set_tags.sh
     
