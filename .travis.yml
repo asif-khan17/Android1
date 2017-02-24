@@ -1,5 +1,5 @@
 
-sudo: false
+sudo: true
 
 language: android
 jdk: oraclejdk8
@@ -14,7 +14,7 @@ android:
  # - android-$EMULATOR_API_LEVEL
  # - extra-google-m2repository
  # - extra-android-m2repository
-  - addon-google_apis-google-19
+ # - addon-google_apis-google-19
   
   
   
