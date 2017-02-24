@@ -6,10 +6,14 @@ jdk: oraclejdk8
 
 android:
   components:
-  - platform-tools
   - tools
-  - build-tools-24.0.2
-  - android-24
+  - platform-tools
+  - build-tools-$ANDROID_BUILD_TOOLS
+  - android-$ANDROID_API
+  - android-$EMULATOR_API_LEVEL
+  - extra-google-m2repository
+  - extra-android-m2repository
+  - addon-google_apis-google-19
   
   
   
